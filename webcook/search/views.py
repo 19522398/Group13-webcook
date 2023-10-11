@@ -17,9 +17,10 @@ class SearchResult(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get("q")
-        regex = re.compile('[@_!#$%^&*()<>?/\|}{~:]')   
+        regex = re.compile("[@_!#$%^&*()<>?/\\|}{~:]")   
         check = regex.search(query)
-        if (query.isdigit() == False and check == 0):
+        print(check)
+        if (query.isdigit() == False and check != 0):
             object_list = Recipe.objects.filter(Q(dish_name__icontains=query) | Q(ingredients__icontains=query))
             if(object_list):
                 return object_list
