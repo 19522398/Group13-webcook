@@ -1,0 +1,27 @@
+h1{
+    text-align: center;
+    font-size: 70px;
+    font-family: "French Script MT";
+}
+
+h2
+{
+    font-size: 60px;
+    font-family: "French Script MT";
+}
+
+p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+img{
+    max-width: 50%;
+    max-height: 50%
+    }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }

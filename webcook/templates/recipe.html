@@ -1,0 +1,14 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/others-style.css' %}">
+
+<ul>
+    {% for recipe in object_list %}
+        <h1>{{recipe.dish_name}}</h1>
+        <img src="../{{recipe.image}}" class="center"/>
+        <h2>Ingredients</h2><p>{{recipe.ingredients|linebreaks}}</p>
+        <h2>Methods</h2><p>{{recipe.cooking_methods|linebreaks}}</p>
+    {% endfor %}
+</ul>
+
+
+

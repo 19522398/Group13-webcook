@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index-style.css' %}">
+<h1>Group 13's cooking website</h1>
+<img src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2018%2F09%2Fgordon-ramsay-hells-kitchen-02-2000.jpg" class="center">
+<p>Welcome to our cooking website</p>
+
+<form action="{% url 'results' %}" method="get">
+    <input name="q" type="text" placeholder="Search for ingredient or name of the dish", class="center" required>
+</form>
