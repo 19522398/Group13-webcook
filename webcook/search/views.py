@@ -20,7 +20,7 @@ class SearchResult(ListView):
         regex = re.compile("[@_!#$%^&*()<>?/\\|}{~:]")   
         check = regex.search(query)
         print(check)
-        if (query.isdigit() == False and check != 0):
+        if (query.isdigit() == False and check == None):
             object_list = Recipe.objects.filter(Q(dish_name__icontains=query) | Q(ingredients__icontains=query))
             if(object_list):
                 return object_list
