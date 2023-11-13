@@ -18,9 +18,9 @@ def index(request):
         api_url = 'https://api.calorieninjas.com/v1/nutrition?query='
         query = data
         response = requests.get(api_url + query, headers={'X-Api-Key': 'QIYWhfjMhNHSe3coceHJGA==WlJx0O4NcxmPSjW6','Origin':'api.calorieninjas.com'})
-    #    res = response.json()
-    # context = {
-    # 'res':res,
-    # 'user': userauth
-    # }
-    return HttpResponse(template.render())
+        res = response.json()
+        print(res)
+    context = {
+    'res':res,
+    }
+    return HttpResponse(template.render(context))
