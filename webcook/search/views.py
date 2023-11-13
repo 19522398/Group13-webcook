@@ -4,8 +4,11 @@ from django.views.generic import TemplateView, ListView
 from .models import Recipe
 from django.db.models import Q
 from django.http import Http404
-from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.template import loader
 import re
+import requests
 # Create your views here.
 
 class HomePage(TemplateView):
@@ -38,4 +41,3 @@ class RecipeDetails(ListView):
         query = self.request.GET.get("q")
         object_list = Recipe.objects.filter(Q(dish_name__icontains=query))
         return object_list
-
