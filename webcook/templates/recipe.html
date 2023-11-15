@@ -1,9 +1,9 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/others-style.css' %}">
-
+<h1><a href="../">Group 13's cooking website</a></h1>
 <ul>
     {% for recipe in object_list %}
-        <h1>{{recipe.dish_name}}</h1>
+        <h2>{{recipe.dish_name}}</h2>
         <img src="../{{recipe.image}}" class="center"/>
         <h2>Ingredients</h2><p>{{recipe.ingredients|linebreaks}}</p>
         <h2>Methods</h2><p>{{recipe.cooking_methods|linebreaks}}</p>

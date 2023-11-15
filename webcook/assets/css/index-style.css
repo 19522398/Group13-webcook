@@ -32,3 +32,9 @@ img{
     margin-left: auto;
     margin-right: auto;
   }
+
+  a, a:link, a:visited, a:hover, a:focus, a:active{
+    color:black;
+    font-family: "French Script MT";
+    text-decoration:none;
+}
