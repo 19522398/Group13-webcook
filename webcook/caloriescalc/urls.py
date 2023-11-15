@@ -5,5 +5,5 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('calories/', views.index, name='calories'),
+    path('calories/', views.calories, name='calories'),
 ]

@@ -7,11 +7,11 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 @csrf_exempt
-def index(request):
-    # res = None
-    # userauth = None
-    # if(request.user.is_authenticated):
-    #     userauth = request.user
+def calories(request):
+    res = None
+    user = None
+    if(request.user.is_authenticated):
+        user = request.user
     template = loader.get_template('calories.html')
     if(request.method =='POST' and request.POST['calories']):
         data = request.POST['calories']
@@ -22,5 +22,6 @@ def index(request):
         print(res)
     context = {
     'res':res,
+    'user':user
     }
     return HttpResponse(template.render(context))
