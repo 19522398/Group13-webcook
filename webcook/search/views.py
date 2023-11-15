@@ -23,7 +23,7 @@ class SearchResult(ListView):
         
         regex = re.compile("[@_!#$%^&*()<>?/\\|}{~:]")   
         check = regex.search(query)
-
+        
         if (query.isdigit() == False and check == None):
             t = query.split(",")
             search = []
