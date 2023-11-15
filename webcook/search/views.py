@@ -20,11 +20,30 @@ class SearchResult(ListView):
 
     def get_queryset(self):
         query = self.request.GET.get("q")
+        
         regex = re.compile("[@_!#$%^&*()<>?/\\|}{~:]")   
         check = regex.search(query)
-        print(check)
+
         if (query.isdigit() == False and check == None):
-            object_list = Recipe.objects.filter(Q(dish_name__icontains=query) | Q(ingredients__icontains=query))
+            t = query.split(",")
+            search = []
+        
+            for i in t:
+                if(i[0].count(" ")): 
+                    i = "".join(i.split())
+                search.append(i)
+
+            if(len(search) == 1):
+                object_list = Recipe.objects.filter(Q(dish_name__icontains=search[0]) | Q(ingredients__icontains=search[0]))
+                
+            else:
+                object_list = Recipe.objects.filter(ingredients__in=search)
+                query = Q()
+                for ingredient in search:
+                    query &= Q(ingredients__icontains=ingredient)
+
+                object_list = Recipe.objects.filter(query)
+            
             if(object_list):
                 return object_list
         else:
