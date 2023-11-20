@@ -6,7 +6,21 @@ h1{
 
 h2
 {
+    font-size: 70px;
+    font-family: "French Script MT";
+    text-align: center;
+}
+
+h3
+{
     font-size: 60px;
     font-family: "French Script MT";
     text-align: center;
+}
+
+
+a, a:link, a:visited, a:hover, a:focus, a:active{
+    color:black;
+    font-family: "French Script MT";
+    text-decoration:none;
 }

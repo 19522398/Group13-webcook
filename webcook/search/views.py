@@ -4,11 +4,8 @@ from django.views.generic import TemplateView, ListView
 from .models import Recipe
 from django.db.models import Q
 from django.http import Http404
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.template import loader
+from django.http import HttpResponseNotFound
 import re
-import requests
 # Create your views here.
 
 class HomePage(TemplateView):
@@ -46,8 +43,6 @@ class SearchResult(ListView):
             
             if(object_list):
                 return object_list
-        else:
-            raise Http404("Query not legit, it's should be words, not number or any special characters")
         
 class NotFound(TemplateView):
     template_name='404.html'
