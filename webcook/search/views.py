@@ -4,9 +4,21 @@ from django.views.generic import TemplateView, ListView
 from .models import Recipe
 from django.db.models import Q
 from django.http import Http404
-from django.http import HttpResponseNotFound
+from django.http import HttpResponse
 import re
+from django.template import loader
+from django.shortcuts import render
 # Create your views here.
+
+def index(request):
+  template = loader.get_template('index.html')
+  context = {}
+  if(request.user.is_authenticated):
+        context = {
+            'user': request.user
+        }
+        return render(request, 'index.html',context)
+  return HttpResponse(template.render(context))
 
 class HomePage(TemplateView):
     template_name = 'index.html'

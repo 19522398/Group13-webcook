@@ -1,11 +1,11 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/index-style.css' %}">
 <h1><a href="../">Group 13's cooking website</a></h1>
-<h2>Search results by name</h2>
+<h2 style="text-align: left;">Search results by name</h2>
 <ul>
     {% for recipe in object_list %}
-    <li>
-        <a href="/recipe/?q={{recipe.dish_name}}" style="font-size: 40px;">{{recipe.dish_name}}</a>
-    </li>
+    <!--<li>-->
+        <a href="/recipe/?q={{recipe.dish_name}}" style="font-size: 40px;">{{recipe.dish_name}}</a><br>
+    <!--</li>-->
     {% endfor %}
 </ul>

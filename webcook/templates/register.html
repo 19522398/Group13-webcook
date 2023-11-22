@@ -1,0 +1,12 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index-style.css' %}">
+<h1><a href="../">Group 13's cooking website</a></h1>
+<h2>Register</h2>
+
+<form method="post">
+    <input type="text" name="user" placeholder="Username" class="center"><br>
+    <input type="email" name="email" placeholder="Email" class="center"/><br>
+    <input type="password" name="pass" placeholder="Enter password" class="center"/><br>
+    <input type="password" name="pass2" placeholder="Reenter your password" class="center"/><br>
+    <input type="submit" name="register" value="Register" class="center"/>
+</form>
