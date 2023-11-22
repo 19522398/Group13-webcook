@@ -22,5 +22,6 @@ urlpatterns = [
     path("",include("caloriescalc.urls")),
     path("",include("register.urls")),
     path("",include("login.urls")),
-    path("", include("logout.urls"))
+    path("", include("logout.urls")),
+    path("",include("bmicalc.urls"))
 ]

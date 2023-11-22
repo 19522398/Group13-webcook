@@ -31,8 +31,6 @@ def Register(request):
         passw2 = request.POST['pass2']
         mail = request.POST["email"]
 
-        print(username, passw, passw2, mail)
-
         if User.objects.filter(username=username):
             context = {
             'email': mail,
@@ -67,7 +65,8 @@ def Register(request):
         return redirect('login')
     
     context = {
-    'username':name
+    'username':name,
+    'user': request.user
     }
     return HttpResponse(template.render(context))
 

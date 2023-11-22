@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'search',
     'caloriescalc',
     'login',
-    'register'
+    'register',
+    'logout',
+    'bmicalc'
 ]
 
 MIDDLEWARE = [

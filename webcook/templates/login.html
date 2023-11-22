@@ -1,11 +1,22 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/index-style.css' %}">
 <h1><a href="../">Group 13's cooking website</a></h1>
+{% if user.is_authenticated %}
+<h2>You are already logged in</h2>
+{% else %}
 <h2>Login</h2>
 
+{% csrf_token %}
 <form method="post">
     <input type="text" name="username" class="center" required/><br>
     <input type="password" name="password" class="center" required/><br>
     <input type="submit" name="login" value="Login" class="center"/>
 </form>
 <a href="../register/" style="text-align: center; font-size: 40px;" class="center">No account ? Create it here</a>
+
+{% for message in messages %}
+<p>{{message}}</p>
+{% endfor %}
+
+{% endif %}
+

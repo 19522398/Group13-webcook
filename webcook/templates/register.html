@@ -1,6 +1,11 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/index-style.css' %}">
 <h1><a href="../">Group 13's cooking website</a></h1>
+
+{% if user.is_authenticated %}
+<h2>You are already logged in</h2>
+
+{% else %}
 <h2>Register</h2>
 
 <form method="post">
@@ -10,3 +15,11 @@
     <input type="password" name="pass2" placeholder="Reenter your password" class="center"/><br>
     <input type="submit" name="register" value="Register" class="center"/>
 </form>
+
+<a href="../login/"><input type="submit" name="register" value="Login" class="center"/></a>
+
+{% if message %}
+<p>{{message}}</p>
+{% endif %}
+
+{% endif %}
