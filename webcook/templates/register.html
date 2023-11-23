@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/index-style.css' %}">
+<!--<link rel="stylesheet" href="{% static 'css/index-style.css' %}">
 <h1><a href="../">Group 13's cooking website</a></h1>
 
 {% if user.is_authenticated %}
@@ -22,4 +22,95 @@
 <p>{{message}}</p>
 {% endif %}
 
-{% endif %}
+{% endif %}-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+   <section class="h-100 gradient-form" style="background-color: #f6f8f7;">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-xl-10">
+            <div class="card rounded-3 text-black">
+              <div class="row g-0">
+                <div class="col-lg-6">
+                  <div class="card-body p-md-5 mx-md-4">
+    
+                    <div class="text-center">
+                      <a href="../"><img src="{% static 'logo/Logo_UIT_updated.jpg' %}" style="width: 185px;" alt="logo"></a>
+                      <br>
+                      <h4 class="mt-1 mb-5 pb-1">GROUP 13</h4>
+                    </div>
+    
+                    <form method="post">
+                      <p>CREATE YOUR ACCOUNT</p>
+
+                      {% if user.is_authenticated %}
+                      <p>You are already logged in</p>
+                      {% else %}
+
+                      {% if message %}
+                      <p style="color: red; font-style: italic;">{{message}}</p>
+                      {% endif %}
+
+                      <br>
+    
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="user">Username</label>
+                        <input type="text" name="user" id="user" class="form-control"
+                          placeholder="Username" required/>  
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control"
+                          placeholder="Email address" required/>  
+                      </div>
+    
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="pass">Password</label>
+                        <input type="password" name="pass" id="pass" class="form-control" required/>
+                      </div>
+
+                      <div class="form-outline mb-4">
+                        <label class="form-label" for="pass2">Re-enter Password</label>
+                        <input type="password" name="pass2" id="pass2" class="form-control" required/>
+                      </div>
+
+                      <div class="text-center pt-1 mb-5 pb-1">
+                        <input id="register" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" value="Create">
+                      </div>
+    
+                      <div class="d-flex align-items-center justify-content-center pb-4">
+                        <p class="mb-0 me-2">Already have an account?</p>
+                        <a href="../login/"><button type="button" class="btn btn-success">Login here</button></a>
+                      </div>
+    
+                    </form>
+
+                    {% endif %}
+
+                  </div>
+                </div>
+                <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                  <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                    <h4 class="mb-4">Cooking website</h4>
+                    <p class="mb-2">Nơi mà bạn có thể tìm kiếm các công thức nấu ăn khác nhau, tính toán ra lượng calories của nó .</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+</html>
