@@ -23,5 +23,6 @@ urlpatterns = [
     path("",include("register.urls")),
     path("",include("login.urls")),
     path("", include("logout.urls")),
-    path("",include("bmicalc.urls"))
+    path("",include("bmicalc.urls")),
+    path("",include("recipedetail.urls"))
 ]

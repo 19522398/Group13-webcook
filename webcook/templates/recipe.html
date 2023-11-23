@@ -1,6 +1,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/others-style.css' %}">
 <h1><a href="../">Group 13's cooking website</a></h1>
+
 <ul>
     {% for recipe in object_list %}
         <h2>{{recipe.dish_name}}</h2>
@@ -10,4 +11,44 @@
     {% endfor %}
 </ul>
 
+<h2>Some nutritional facts:</h2>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Calories</th>
+            <th scope="col">Serving Size (g)</th>
+            <th scope="col">Total Fat (g)</th>
+            <th scope="col">Saturated Fat (g)</th>
+            <th scope="col">Protein</th>
+            <th scope="col">Sodium</th>
+            <th scope="col">Cholesterol</th>
+            <th scope="col">Potassium</th>
+            <th scope="col">Carbohydrates</th>
+            <th scope="col">Fiber</th>
+            <th scope="col">Sugar</th>
+        </tr>
+    </thead>
+    <tbody id="result">
+        {% for value in res.items %}
+        <tc>
+
+        </tc>
+        <tr>
+            <td>{{value.name}}</td>
+            <td>{{value.calories}}</td>
+            <td>{{value.serving_size_g}}g</td>
+            <td>{{value.fat_total_g}}g</td>
+            <td>{{value.fat_saturated_g}}g</td>
+            <td>{{value.protein_g}}g</td>
+            <td>{{value.sodium_mg}}mg</td>
+            <td>{{value.potassium_mg}}mg</td>
+            <td>{{value.cholesterol_mg}}mg</td>
+            <td>{{value.carbohydrates_total_g}}g</td>
+            <td>{{value.fiber_g}}g</td>
+            <td>{{value.sugar_g}}g</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 

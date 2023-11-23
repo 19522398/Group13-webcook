@@ -8,6 +8,7 @@ from django.http import HttpResponse
 import re
 from django.template import loader
 from django.shortcuts import render
+import requests
 # Create your views here.
 
 def index(request):
@@ -58,12 +59,3 @@ class SearchResult(ListView):
         
 class NotFound(TemplateView):
     template_name='404.html'
-
-class RecipeDetails(ListView):
-    model = Recipe
-    template_name = 'recipe.html'
-
-    def get_queryset(self):
-        query = self.request.GET.get("q")
-        object_list = Recipe.objects.filter(Q(dish_name__icontains=query))
-        return object_list

@@ -32,3 +32,9 @@ img{
     font-family: "French Script MT";
     text-decoration:none;
 }
+
+table, th, tr, td, thead
+{
+    border: 1px solid black;
+    font-size: 20px;
+}

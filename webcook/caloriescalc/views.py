@@ -19,7 +19,6 @@ def calories(request):
         query = data
         response = requests.get(api_url + query, headers={'X-Api-Key': 'QIYWhfjMhNHSe3coceHJGA==WlJx0O4NcxmPSjW6','Origin':'api.calorieninjas.com'})
         res = response.json()
-        print(res)
     context = {
     'res':res,
     'user':user
