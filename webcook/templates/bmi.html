@@ -12,8 +12,17 @@
     <input type="submit" name="submit" value="Calculate BMI" class="center">
 </form>
 
-{% if message %}
-<p>{{message}}</p>
+{% else %}
+<h2>You must log in to use this feature</h2>
+
+{% endif %}
+
+{% if message_ok %}
+<p>{{message_ok}}</p>
+{% endif %}
+
+{% if message_not_ok %}
+<p>{{message_not_ok}}</p>
 <p style="text-align: left; font-weight: bolder;">For losing weight</p><br><br>
 <a href="https://www.cdc.gov/healthyweight/losing_weight/index.html" style="text-align: left; font-size: 40px;">https://www.cdc.gov/healthyweight/losing_weight/index.html</a><br>
 <a href="https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible" style="text-align: left; font-size: 40px;">https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible</a><br>
@@ -23,9 +32,5 @@
 <a href="https://www.healthline.com/nutrition/how-to-gain-weight" style="text-align: left; font-size: 40px;">https://www.healthline.com/nutrition/how-to-gain-weight</a><br>
 <a href="https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/healthy-ways-to-gain-weight/" style="text-align: left; font-size: 40px;">https://www.nhs.uk/live-well/healthy-weight/managing-your-weight/healthy-ways-to-gain-weight/</a><br>
 <a href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/underweight/faq-20058429" style="text-align: left; font-size: 40px;">https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/underweight/faq-20058429</a>
-{% endif %}
-
-{% else %}
-<h2>You must log in to use this feature</h2>
 
 {% endif %}
