@@ -1,11 +1,149 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/index-style.css' %}">
+<!--<link rel="stylesheet" href="{% static 'css/index-style.css' %}">
 <h1><a href="../">Group 13's cooking website</a></h1>
 <h2 style="text-align: left;">Search results by name</h2>
 <ul>
     {% for recipe in object_list %}
-    <!--<li>-->
+
         <a href="/recipe/?q={{recipe.dish_name}}" style="font-size: 40px;">{{recipe.dish_name}}</a><br>
-    <!--</li>-->
+
     {% endfor %}
-</ul>
+</ul>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALORIES CACULATOR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+  <style>
+    .navbar-custom {
+    margin-bottom: 20px;
+    color: white;
+    background: #181A1B;
+    font-family: sans-serif;
+}
+  </style>
+  <!-- Header -->
+<div class="header">
+</div>
+<style>
+    .header {
+    background-image: url('./image/bg-img/header.jpg');
+    background-size: cover; /* Để hình ảnh nền phủ kín phần header */
+    background-repeat: no-repeat; /* Không lặp lại hình ảnh nền */
+    height: 150px; /* Điều chỉnh chiều cao của header theo mong muốn */
+    text-align: center; /* Căn giữa nội dung trong header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<a class="navbar-brand d-flex justify-content-center " href="/">
+    <img src="{% static 'image/bg-img/UIT_logo.png' %}" style="max-height: 200px; max-width: 200px;">
+</a>
+
+
+<style>
+    /* CSS customizations */
+    .post-image {
+        width: 100%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 600px; /* Set a max-width if needed */
+        display: block; /* Center the image */
+        margin: 0 auto; /* Center the image */
+    }
+    
+    .post-text {
+        font-size: 1.25rem; /* Larger text size */
+        margin-top: 1rem; /* Add space between image and text */
+        text-align: center; /* Center the text */
+    }
+</style>
+
+
+  
+
+
+        <nav class="navbar navbar-expand-lg  navbar-custom">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+    
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="../" style="color:white">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white"> ABOUT US
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./member.html" style="color:black">Member</a></li>
+                            <li><a class="dropdown-item" href="./maps.html" style="color:black">Maps</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../calories" style="color:white">CALORIES CALCULATOR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../bmi" style="color:white">BMI CALCULATOR</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="/logout" style="color:white">LOGOUT</a>
+                    </li>
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="/info" style="color:white">ID</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="/login" style="color:white">LOGIN/REGISTER</a>
+                    </li>
+                    {% endif %}
+                     <!--<input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">-->
+                     <form action="{% url 'results' %}" method="get">
+                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">
+                        <datalist id="searches">
+                            <option value="Option1">
+                            <option value="Option2">
+                        </datalist>
+                        <button class ="btn btn-outline-light"type="submit" formaction="{% url 'results' %}">Search</button>
+                    </form>
+                    
+                    
+                </ul>
+            </div>
+        </nav>
+ <div class="container mt-5">
+    <h2 class="text-center text-white">RESULT</h2>
+</div>
+
+   <!-- Nút cuộn lên đầu trang -->
+<button onclick="scrollToTop()" id="scrollToTopButton" style="display:none; position:fixed; bottom:20px; right:20px;">Lên Đầu Trang</button>
+<script>
+    // Hàm cuộn lên đầu trang
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    
+    // Hiển thị nút khi cuộn xuống một khoảng nhất định
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("scrollToTopButton").style.display = "block";
+        } else {
+            document.getElementById("scrollToTopButton").style.display = "none";
+        }
+    };
+</script>
+    
+
+</body>
+</html>
