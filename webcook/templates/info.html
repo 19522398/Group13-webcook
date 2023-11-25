@@ -1,0 +1,30 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<h1><a href="../">Group 13's cooking website</a></h1>
+<h2>Basic informations</h2>
+
+{% if user.is_authenticated %}
+<p>Name:</p>
+<p>{{user}}</p>
+{% for i in info %}
+<p>Age:</p>
+<p>{{i.age}}</p>
+<p>Weight:</p>
+<p>{{i.weight}}</p>
+<p>Height:</p>
+<p>{{i.height}}</p>
+{% endfor %}
+<form method="post">
+    <p>Enter your info here:</p>
+    <input type="text" name="age" placeholder="Enter age..."/>
+    <input type="text" name="weight" placeholder="Enter weight..."/>
+    <input type="text" name="height" placeholder="Enter height..."/>
+    <input type="submit" value="Save">
+</form>
+{% else %}
+
+<h3>You must log in to see your info</h3>
+
+{% endif %}
+

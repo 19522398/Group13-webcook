@@ -24,5 +24,6 @@ urlpatterns = [
     path("",include("login.urls")),
     path("", include("logout.urls")),
     path("",include("bmicalc.urls")),
-    path("",include("recipedetail.urls"))
+    path("",include("recipedetail.urls")),
+    path("",include("info.urls")),
 ]
