@@ -1,4 +1,4 @@
-{% load static %}
+<!--{% load static %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 <h1><a href="../">Group 13's cooking website</a></h1>
@@ -26,5 +26,297 @@
 
 <h3>You must log in to see your info</h3>
 
-{% endif %}
+{% endif %}-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+  <style>
+    .navbar-custom {
+    margin-bottom: 20px;
+    color: white;
+    background: #181A1B;
+    font-family: sans-serif;
+}
+  </style>
+  <!-- Header -->
+<div class="header">
+</div>
+<style>
+    .header {
+    background-image: url('./image/bg-img/header.jpg');
+    background-size: cover; /* Để hình ảnh nền phủ kín phần header */
+    background-repeat: no-repeat; /* Không lặp lại hình ảnh nền */
+    height: 150px; /* Điều chỉnh chiều cao của header theo mong muốn */
+    text-align: center; /* Căn giữa nội dung trong header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<a class="navbar-brand d-flex justify-content-center " href="#">
+    <img src="{% static 'image/bg-img/UIT_logo.png' %}" style="max-height: 200px; max-width: 200px;">
+</a>
+
+
+<style>
+    /* CSS customizations */
+    .post-image {
+        width: 100%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 600px; /* Set a max-width if needed */
+        display: block; /* Center the image */
+        margin: 0 auto; /* Center the image */
+    }
+    
+    .post-text {
+        font-size: 1.25rem; /* Larger text size */
+        margin-top: 1rem; /* Add space between image and text */
+        text-align: center; /* Center the text */
+    }
+</style>
+
+
+  
+
+
+        <nav class="navbar navbar-expand-lg  navbar-custom">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+    
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="../" style="color:white">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white"> ABOUT US
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./member.html" style="color:black">Member</a></li>
+                            <li><a class="dropdown-item" href="./maps.html" style="color:black">Maps</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../calories" style="color:white">CALORIES CALCULATOR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../bmi" style="color:white">BMI CALCULATOR</a>
+                    </li>
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="../user" style="color:white">ID</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="../logout" style="color:white">LOGOUT</a>
+                    </li>
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="../info" style="color:white">ID</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="../login" style="color:white">LOGIN/REGISTER</a>
+                    </li>
+                    {% endif %}
+                    <input class="form-control text-darks" list="searches" name="search" id="search" placeholder="Enter your search query">
+                    <form action="/search" method="get">
+                        <datalist id="searches">
+                            <option value="Option1">
+                            <option value="Option2">
+                        </datalist>
+                        <button class ="btn btn-outline-light"type="submit" formaction="./Search.html">Search</button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+ <!-- Các đoạn mã HTML và JavaScript của trang BMI -->
+ <div class="container mt-5">
+    <h2 class="text-center text-white">USER INFOMATION</h2> <!-- Dòng chữ BMI ở giữa trang -->
+</div>
+
+<div class="container mt-5">
+    <form id="userInfoForm">
+        <!-- Tên -->
+        <div class="mb-3" id="nameDiv">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Tên" required>
+        </div>
+
+        <!-- Tuổi -->
+        <div class="mb-3" id="ageDiv">
+            <input type="number" class="form-control" id="age" name="age" placeholder="Tuổi" required>
+        </div>
+
+        <!-- Giới tính -->
+        <div class="mb-3" id="genderDiv">
+            <select class="form-select" id="gender" name="gender" required>
+                <option value="Other"></option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+            </select>
+        </div>
+
+        <!-- Chiều cao -->
+        <div class="mb-3" id="heightDiv">
+            <input type="number" class="form-control" id="height" name="height" placeholder="Chiều cao (cm)" required>
+        </div>
+
+        <!-- Cân nặng -->
+        <div class="mb-3" id="weightDiv">
+            <input type="number" class="form-control" id="weight" name="weight" placeholder="Cân nặng (kg)" required>
+        </div>
+
+        <!-- Nút Xác nhận -->
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-light" onclick="Submit()">Xác nhận</button>
+            <button type="button" class="btn btn-outline-light" onclick="clearResult()">Xoá</button>
+            <button type="button" class="btn btn-outline-light" onclick="loadFromLocalStorage()">Trích xuất thông tin</button>
+        </div>
+    </form>
+
+    <div id="result" class="mt-4"></div>
+
+    <!-- Nút Sửa thông tin (ẩn ban đầu) -->
+    <button type="button" class="btn btn-outline-light mt-3" onclick="clearResult()" id="editInfoBtn" style="display: none;">Xác nhận</button>
+    
+</div>
+<style>
+    #result {
+        color: white;
+    }
+</style>
+<!--BMI-->
+<script>
+    var userData = JSON.parse(localStorage.getItem('userData')) || {};
+
+    // Nếu có dữ liệu, điền vào các trường
+    document.getElementById('name').value = userData.name || '';
+    document.getElementById('age').value = userData.age || '';
+    document.getElementById('gender').value = userData.gender || '';
+    document.getElementById('height').value = userData.height || '';
+    document.getElementById('weight').value = userData.weight || '';
+    function Submit() {
+        var name = document.getElementById("name").value;
+        var age = document.getElementById("age").value;
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var gender = document.getElementById("gender").value;
+
+
+        // Hiển thị kết quả trong bảng
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "<h2> Xác nhận lại thông tin người dùng:</h2>" +
+            "<table class='table table-bordered'>" +
+            "<tr><td><strong>Tên:</strong></td><td>" + name + "</td></tr>" +
+            "<tr><td><strong>Tuổi:</strong></td><td>" + age + "</td></tr>" +
+            "<tr><td><strong>Giới tính:</strong></td><td>" + gender + "</td></tr>" +
+            "<tr><td><strong>Chiều cao:</strong></td><td>" + height + " cm</td></tr>" +
+            "<tr><td><strong>Cân nặng:</strong></td><td>" + weight + " kg</td></tr>" +
+            
+            "</table>";
+
+        //lưu thông tin
+        var userData = {
+            name: document.getElementById("name").value,
+            age: document.getElementById("age").value,
+            height: document.getElementById("height").value,
+            weight: document.getElementById("weight").value,
+            gender: document.getElementById("gender").value
+        };
+
+        // Lưu dữ liệu vào Local Storage
+        localStorage.setItem("userData", JSON.stringify(userData));
+        // ẩn 
+        hideInputFields();
+        document.getElementById("editInfoBtn").style.display = "block";
+
+    }
+    function clearResult() {
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = ""; // Xoá nội dung kết quả
+        clearForm();
+        //hiện 
+        showInputFields();
+        document.getElementById("editInfoBtn").style.display = "none";
+    }
+    function clearForm() {
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("height").value = "";
+        document.getElementById("weight").value = "";
+        document.getElementById("gender").value = "";
+    }
+
+    function loadFromLocalStorage() {
+        var savedData = localStorage.getItem("userData");
+
+        if (savedData) {
+            var userData = JSON.parse(savedData);
+
+            // Đặt giá trị cho các trường nhập liệu từ dữ liệu lưu trữ
+            document.getElementById("name").value = userData.name;
+            document.getElementById("age").value = userData.age;
+            document.getElementById("height").value = userData.height;
+            document.getElementById("weight").value = userData.weight;
+            document.getElementById("gender").value = userData.gender;
+            // Hiển thị lại các trường nhập liệu và ẩn nút sửa thông tin
+            showInputFields();
+            document.getElementById("editInfoBtn").style.display = "none";
+        }
+    }
+    function editInfo() {
+        // Hiển thị lại các trường nhập liệu và ẩn nút sửa thông tin
+        showInputFields();
+        document.getElementById("editInfoBtn").style.display = "none";
+    }
+    function hideInputFields() {
+        document.getElementById("name").style.display = "none";
+        document.getElementById("age").style.display = "none";
+        document.getElementById("gender").style.display = "none";
+        document.getElementById("height").style.display = "none";
+        document.getElementById("weight").style.display = "none";
+    }
+
+    // Hàm hiển thị lại các trường nhập liệu
+    function showInputFields() {
+        document.getElementById("name").style.display = "block";
+        document.getElementById("age").style.display = "block";
+        document.getElementById("gender").style.display = "block";
+        document.getElementById("height").style.display = "block";
+        document.getElementById("weight").style.display = "block";
+    }
+
+</script>
+   <!-- Nút cuộn lên đầu trang -->
+<button onclick="scrollToTop()" id="scrollToTopButton" style="display:none; position:fixed; bottom:20px; right:20px;">Lên Đầu Trang</button>
+<script>
+    // Hàm cuộn lên đầu trang
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    
+    // Hiển thị nút khi cuộn xuống một khoảng nhất định
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("scrollToTopButton").style.display = "block";
+        } else {
+            document.getElementById("scrollToTopButton").style.display = "none";
+        }
+    };
+</script>
+    
+
+</body>
+</html>
+
 
