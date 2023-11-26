@@ -9,7 +9,7 @@
 
     {% endfor %}
 </ul>-->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,6 +124,14 @@
         </nav>
  <div class="container mt-5">
     <h2 class="text-center text-white">RESULT</h2>
+    <div>
+        {% for recipe in object_list %}
+    
+        <a href="/recipe/?q={{recipe.dish_name}}"><img src="../{{ recipe.image }}"></a>
+        <p style="color: white;"><strong>{{ recipe.dish_name }}</strong> </p>
+    
+        {% endfor %}
+    </div>
 </div>
 
    <!-- Nút cuộn lên đầu trang -->

@@ -180,6 +180,14 @@
                         <a class="nav-link" href="../login" style="color:white">LOGIN/REGISTER</a>
                     </li>
                     {% endif %}
+                    <form action="{% url 'results' %}" method="get">
+                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">
+                        <datalist id="searches">
+                            <option value="Option1">
+                            <option value="Option2">
+                        </datalist>
+                        <button class ="btn btn-outline-light"type="submit" formaction="{% url 'results' %}">Search</button>
+                    </form>
                 </ul>
             </div>
         </nav>
@@ -191,35 +199,35 @@
 <div class="container mt-5">
     <form id="userInfoForm">
         <div class="mb-3">
-            <label for="name" class="form-label text-white">Tên:</label>
+            <label for="name" class="form-label text-white">Name:</label>
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
         <div class="mb-3">
-            <label for="age" class="form-label text-white">Tuổi:</label>
+            <label for="age" class="form-label text-white">Age:</label>
             <input type="number" class="form-control" id="age" name="age" required>
         </div>
         <div class="mb-3">
-            <label for="gender" class="form-label text-white">Giới tính:</label>
+            <label for="gender" class="form-label text-white">Gender:</label>
             <select class="form-select" id="gender" name="gender" required>
-                <option value="Other"></option>
-                <option value="male">Nam</option>
-                <option value="female">Nữ</option>
+                <option value="Other">Other</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
             </select>
         </div>
 
         <div class="mb-3">
-            <label for="height" class="form-label text-white">Chiều cao (cm):</label>
+            <label for="height" class="form-label text-white">Height (cm):</label>
             <input type="number" class="form-control" id="height" name="height" required>
         </div>
 
         <div class="mb-3">
-            <label for="weight" class="form-label text-white">Cân nặng (kg):</label>
+            <label for="weight" class="form-label text-white">Weight (kg):</label>
             <input type="number" class="form-control" id="weight" name="weight" required>
         </div>
 
-        <button type="button" class="btn btn-outline-primary" onclick="calculateBMI()">Tính BMI</button>
-        <button type="button" class="btn btn-outline-danger" onclick="clearResult()">Xoá</button>
+        <button type="button" class="btn btn-outline-primary" onclick="calculateBMI()">Calculate BMI</button>
+        <button type="button" class="btn btn-outline-danger" onclick="clearResult()">Clear</button>
     </form>
 
     <div id="result" class="mt-4"></div>
@@ -231,6 +239,30 @@
 </style>
 <!--BMI-->
 <script>
+    function checkBMI(bmi){
+        var message = ""
+        if(bmi < 18.5)
+        {
+            message = "It's seems like you are underweight";
+        }
+
+        if(bmi >= 18.5 && bmi < 25)
+        {
+            message = "Your BMI indicates you are healthy, good job, keep up the work";
+        }
+
+        if(bmi >= 25 && bmi < 30)
+        {
+            message = "It's seems you are a bit overweight, losing some maybe the best idea";
+        }
+
+        if(bmi >= 30)
+        {
+            message = "You are, quite over the chart, you need to let off some weight to improve your health";
+        }
+
+        return message;
+    }
     function calculateBMI() {
         var name = document.getElementById("name").value;
         var age = document.getElementById("age").value;
@@ -243,14 +275,15 @@
 
         // Hiển thị kết quả trong bảng
         var resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = "<h2>Kết quả:</h2>" +
+        resultDiv.innerHTML = "<h2>Result:</h2>" +
             "<table class='table table-bordered'>" +
-            "<tr><td><strong>Tên:</strong></td><td>" + name + "</td></tr>" +
-            "<tr><td><strong>Tuổi:</strong></td><td>" + age + "</td></tr>" +
-            "<tr><td><strong>Chiều cao:</strong></td><td>" + height + " cm</td></tr>" +
-            "<tr><td><strong>Cân nặng:</strong></td><td>" + weight + " kg</td></tr>" +
-            "<tr><td><strong>Giới tính:</strong></td><td>" + gender + "</td></tr>" +
+            "<tr><td><strong>Name:</strong></td><td>" + name + "</td></tr>" +
+            "<tr><td><strong>Age:</strong></td><td>" + age + "</td></tr>" +
+            "<tr><td><strong>Height:</strong></td><td>" + height + " cm</td></tr>" +
+            "<tr><td><strong>Weight:</strong></td><td>" + weight + " kg</td></tr>" +
+            "<tr><td><strong>Gender:</strong></td><td>" + gender + "</td></tr>" +
             "<tr><td><strong>BMI:</strong></td><td>" + bmi.toFixed(2) + "</td></tr>" +
+            "<tr><td><strong>Conclusion:</strong></td><td>" + checkBMI(bmi) + "</td></tr>" +
             "</table>";
     }
     function clearResult() {

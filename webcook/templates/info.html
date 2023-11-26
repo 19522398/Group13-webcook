@@ -114,9 +114,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../bmi" style="color:white">BMI CALCULATOR</a>
                     </li>
-                    <li class="nav-item" id="login">
-                        <a class="nav-link" href="../user" style="color:white">ID</a>
-                    </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item" id="login">
                         <a class="nav-link" href="../logout" style="color:white">LOGOUT</a>
@@ -129,13 +126,14 @@
                         <a class="nav-link" href="../login" style="color:white">LOGIN/REGISTER</a>
                     </li>
                     {% endif %}
-                    <input class="form-control text-darks" list="searches" name="search" id="search" placeholder="Enter your search query">
-                    <form action="/search" method="get">
+                    <!--<input class="form-control text-darks" list="searches" name="search" id="search" placeholder="Enter your search query">-->
+                    <form action="{% url 'results' %}" method="get">
+                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">
                         <datalist id="searches">
                             <option value="Option1">
                             <option value="Option2">
                         </datalist>
-                        <button class ="btn btn-outline-light"type="submit" formaction="./Search.html">Search</button>
+                        <button class ="btn btn-outline-light"type="submit" formaction="{% url 'results' %}">Search</button>
                     </form>
                 </ul>
             </div>
@@ -149,38 +147,38 @@
     <form id="userInfoForm">
         <!-- Tên -->
         <div class="mb-3" id="nameDiv">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Tên" required>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
         </div>
 
         <!-- Tuổi -->
         <div class="mb-3" id="ageDiv">
-            <input type="number" class="form-control" id="age" name="age" placeholder="Tuổi" required>
+            <input type="number" class="form-control" id="age" name="age" placeholder="Age" required>
         </div>
 
         <!-- Giới tính -->
         <div class="mb-3" id="genderDiv">
             <select class="form-select" id="gender" name="gender" required>
-                <option value="Other"></option>
-                <option value="male">Nam</option>
-                <option value="female">Nữ</option>
+                <option value="Other">Other</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
         </div>
 
         <!-- Chiều cao -->
         <div class="mb-3" id="heightDiv">
-            <input type="number" class="form-control" id="height" name="height" placeholder="Chiều cao (cm)" required>
+            <input type="number" class="form-control" id="height" name="height" placeholder="Height (cm)" required>
         </div>
 
         <!-- Cân nặng -->
         <div class="mb-3" id="weightDiv">
-            <input type="number" class="form-control" id="weight" name="weight" placeholder="Cân nặng (kg)" required>
+            <input type="number" class="form-control" id="weight" name="weight" placeholder="Weight (kg)" required>
         </div>
 
         <!-- Nút Xác nhận -->
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-outline-light" onclick="Submit()">Xác nhận</button>
-            <button type="button" class="btn btn-outline-light" onclick="clearResult()">Xoá</button>
-            <button type="button" class="btn btn-outline-light" onclick="loadFromLocalStorage()">Trích xuất thông tin</button>
+            <button type="button" class="btn btn-outline-light" onclick="Submit()">Confirm</button>
+            <button type="button" class="btn btn-outline-light" onclick="clearResult()">Clear</button>
+            <button type="button" class="btn btn-outline-light" onclick="getQuery()">Get information</button>
         </div>
     </form>
 
@@ -205,7 +203,7 @@
     document.getElementById('gender').value = userData.gender || '';
     document.getElementById('height').value = userData.height || '';
     document.getElementById('weight').value = userData.weight || '';
-    function Submit() {
+    /*function Submit() {
         var name = document.getElementById("name").value;
         var age = document.getElementById("age").value;
         var height = document.getElementById("height").value;
@@ -240,7 +238,37 @@
         hideInputFields();
         document.getElementById("editInfoBtn").style.display = "block";
 
-    }
+    }*/
+    function Submit() {
+    //var name = document.getElementById("name").value;
+    var age = document.getElementById("age").value;
+    var height = document.getElementById("height").value;
+    var weight = document.getElementById("weight").value;
+    var gender = document.getElementById("gender").value;
+
+    // Create a FormData object and append form values
+    var formData = new FormData();
+    formData.append('name', "{{user}}");
+    formData.append('age', age);
+    formData.append('height', height);
+    formData.append('weight', weight);
+    formData.append('gender', gender);
+
+    // Make a POST request using the fetch API
+    fetch('./', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // Handle success
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Handle error
+    });
+}
     function clearResult() {
         var resultDiv = document.getElementById("result");
         resultDiv.innerHTML = ""; // Xoá nội dung kết quả
@@ -257,7 +285,7 @@
         document.getElementById("gender").value = "";
     }
 
-    function loadFromLocalStorage() {
+    /*function loadFromLocalStorage() {
         var savedData = localStorage.getItem("userData");
 
         if (savedData) {
@@ -273,7 +301,35 @@
             showInputFields();
             document.getElementById("editInfoBtn").style.display = "none";
         }
+    }*/
+
+    function getQuery() {
+    var formData = new FormData();
+    formData.append('name', "{{user}}")
+    formData.append('age', '');
+    formData.append('height', '');
+    formData.append('weight', '');
+    formData.append('gender', '');
+
+
+    // Omitted the other formData entries for simplicity
+
+    fetch('http://127.0.0.1:8000/info/', {
+        method: 'POST',
+        body: formData,
+    })
+
+    if ("{{ info }}") {
+        {% for i in info %}
+            document.getElementById("name").value = "{{user}}";
+            document.getElementById("age").value = "{{i.age}}";
+            document.getElementById("gender").value =  "{{i.gender}}";
+            document.getElementById("height").value = "{{i.height}}";
+            document.getElementById("weight").value = "{{i.weight}}";
+        {% endfor %}
     }
+}
+
     function editInfo() {
         // Hiển thị lại các trường nhập liệu và ẩn nút sửa thông tin
         showInputFields();
