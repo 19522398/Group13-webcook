@@ -62,7 +62,7 @@ def Register(request):
         myuser = User.objects.create_user(username ,mail, passw)
         messages.success(request,"Your account had been created")
         myuser.save()
-        return redirect('login')
+        return redirect('../login')
     
     context = {
     'username':name,
