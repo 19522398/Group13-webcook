@@ -210,4 +210,29 @@ img{
         padding: 200px;
         border: 1px solid #ccc;
     }
+
+    #search {
+        width: 210px; /* Adjust the width as needed */
+        height: 40px;
+    }
+ 
+    /* Optional: Adjust size of the datalist dropdown */
+    #searches {
+        overflow-y: auto;
+    }
+    .form-control-borderless {
+        border: none;
+    }
+    
+    .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+        border: none;
+        outline: none;
+        box-shadow: none;
+    }
+ 
+      /* Custom CSS */
+      .card-img-top {
+        height: 400px; /* Adjust the height as needed */
+        object-fit: cover; /* Ensure the image covers the entire container */
+    }
     
