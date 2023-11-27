@@ -2,9 +2,8 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import get_queryset
+from .views import comment_list
 
 urlpatterns = [
-    path("recipe/", get_queryset, name="recipe"),
-    
+    path("comment/",comment_list, name="comment"),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

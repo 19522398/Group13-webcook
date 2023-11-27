@@ -59,3 +59,6 @@ class SearchResult(ListView):
         
 class NotFound(TemplateView):
     template_name='404.html'
+
+class Member(TemplateView):
+    template_name='member.html'

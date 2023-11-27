@@ -26,4 +26,5 @@ urlpatterns = [
     path("",include("bmicalc.urls")),
     path("",include("recipedetail.urls")),
     path("",include("info.urls")),
+    path("",include("comment.urls")),
 ]

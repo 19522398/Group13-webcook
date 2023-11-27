@@ -52,3 +52,16 @@
     </tbody>
 </table>
 
+<h2>Comments:</h2>
+{% if comments %}
+<ul>
+    {% for comment in comments %}
+        <li>{{ comment.name }}: {{ comment.content }} at {{ comment.created_at }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form method="post" action="{% url 'comment' %}">
+    <input type="text" name="comment" placeholder="Add your comment here..." style="width: 500px; height: 100px;">
+    <input type="submit" value="Comment" style="width: 100px; height: 50px;">
+</form>
+
