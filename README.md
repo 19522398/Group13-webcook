@@ -6,6 +6,4 @@ Cooking recipe web project
 20521588 - Lê Tuấn Lương<br />
 20522184 - Phạm Văn Xuân<br />
 
-Cài PostgresQL trước khi chạy cái web, setting DB chỉnh trong file settings.py (settings.py nằm trong folder webcook)
-
-Sử dụng Virtual Environment trong folder webcook-venv để có môi trường deploy web chạy thử
+Hướng dẫn cài đặt có trong từng file tên huongdancaidat-<OS tương ứng>.txt, xem và làm theo trước khi chạy thử web
