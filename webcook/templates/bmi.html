@@ -180,13 +180,13 @@
                         <a class="nav-link" href="../login" style="color:white">LOGIN/REGISTER</a>
                     </li>
                     {% endif %}
-                    <form action="{% url 'results' %}" method="get">
-                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">
+                    <form class="d-flex" action="{% url 'results' %}" method="get">
+                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query" required>
                         <datalist id="searches">
                             <option value="Option1">
                             <option value="Option2">
                         </datalist>
-                        <button class ="btn btn-outline-light"type="submit" formaction="{% url 'results' %}">Search</button>
+                        <button class ="btn btn-outline-light" style="width:80px; height:40px;" type="submit" formaction="{% url 'results' %}">Search</button>
                     </form>
                 </ul>
             </div>

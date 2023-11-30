@@ -235,4 +235,57 @@ img{
         height: 400px; /* Adjust the height as needed */
         object-fit: cover; /* Ensure the image covers the entire container */
     }
+
+    .comment {
+        background-color: #181A1B; /* Mã màu đen */
+        color:#181A1B; /* Màu chữ trắng để tương phản */
+        padding: 20px; /* Thêm padding cho đẹp */
+      }
+    
+
+  .comment-box {
+    background-color: #181A1B; /* Mã màu nền bạn muốn sử dụng */
+    color: #fff; /* Màu chữ trắng để tương phản */
+  }
+
+  .image_recipe
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.text_recipe{
+    width :1297px;
+    height:300px;
+    background-color:#181A1B ;
+}
+#comment-section {
+    max-width: 600px;
+    margin: auto;
+    display:contents;
+}
+.comment_card
+{
+    background-color :#35393b;
+    display:block;
+}
+
+.comment {
+    border: 1px solid #f1f4f3;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.comment-box {
+    background-color: #f3f3f3; /* Mã màu nền bạn muốn sử dụng */
+    color: #fff; /* Màu chữ trắng để tương phản */
+  }s
+
+.comment strong {
+    color: #7e8180;
+}
+
+#comment-input {
+    width: 100%;
+    margin-bottom: 10px;
+}
     

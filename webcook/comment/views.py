@@ -15,8 +15,10 @@ def comment_list(request):
     query_params = parse_qs(parsed_url.query)
     dn = query_params.get('q', [''])[0]
 
+    print(request.POST)
+
     if (request.method == 'POST' and request.POST['comment']):
-        user = "Anonymous"
+        user = "AnonymousUser"
         
         if request.user.is_authenticated:
             user = request.user

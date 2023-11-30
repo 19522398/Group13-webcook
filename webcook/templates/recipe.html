@@ -1,67 +1,272 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/others-style.css' %}">
-<h1><a href="../">Group 13's cooking website</a></h1>
 
-<ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
+</head>
+<body>
+  <style>
+    .navbar-custom {
+    margin-bottom: 20px;
+    color: white;
+    background: #181A1B;
+    font-family: sans-serif;
+}
+  </style>
+  <!-- Header -->
+<div class="header">
+</div>
+<style>
+    .header {
+    background-image: url('./image/bg-img/header.jpg');
+    background-size: cover; /* Để hình ảnh nền phủ kín phần header */
+    background-repeat: no-repeat; /* Không lặp lại hình ảnh nền */
+    height: 150px; /* Điều chỉnh chiều cao của header theo mong muốn */
+    text-align: center; /* Căn giữa nội dung trong header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<a class="navbar-brand d-flex justify-content-center " href="/">
+    <img src="{% static 'image/bg-img/UIT_logo.png' %}" style="max-height: 200px; max-width: 200px;">
+</a>
+
+
+<style>
+    /* CSS customizations */
+    .post-image {
+        width: 100%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 600px; /* Set a max-width if needed */
+        display: block; /* Center the image */
+        margin: 0 auto; /* Center the image */
+    }
+    
+    .post-text {
+        font-size: 1.25rem; /* Larger text size */
+        margin-top: 1rem; /* Add space between image and text */
+        text-align: center; /* Center the text */
+    }
+</style>
+
+
+  
+
+
+        <nav class="navbar navbar-expand-lg  navbar-custom">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+    
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="../" style="color:white">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white"> ABOUT US
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/member" style="color:black">Member</a></li>
+                            <li><a class="dropdown-item" href="/maps.html" style="color:black">Maps</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/calories" style="color:white">CALORIES CALCULATOR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bmi" style="color:white">BMI CALCULATOR</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="/logout" style="color:white">LOGOUT</a>
+                    </li>
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="/info" style="color:white">ID</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="/login" style="color:white">LOGIN/REGISTER</a>
+                    </li>
+                    {% endif %}
+                    <form class="d-flex" action="{% url 'results' %}" method="get">
+                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query" required>
+                        <datalist id="searches">
+                            <option value="Option1">
+                            <option value="Option2">
+                        </datalist>
+                        <button class ="btn btn-outline-light" style="width:80px; height:40px;" type="submit" formaction="{% url 'results' %}">Search</button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
     {% for recipe in object_list %}
-        <h2>{{recipe.dish_name}}</h2>
-        <img src="../{{recipe.image}}" class="center"/>
-        <h2>Ingredients</h2><p>{{recipe.ingredients|linebreaks}}</p>
-        <h2>Methods</h2><p>{{recipe.cooking_methods|linebreaks}}</p>
-    {% endfor %}
-</ul>
+    <div class="container mt-5">
+        <h2 class="text-center text-white">Recipe details</h2>
+        <h3 class="text-center text-white">{{recipe.dish_name}}</h3>
+        <img class="image_recipe" style="max-width: 30%; max-height: 30%;"src="../{{recipe.image}}" alt="Card image">
+    </div>
+    <!--Anh thêm vài hình ảnh khác cho mon an-->
+    
+                
+    
+    <div class="container mt-5">
+            <h2 class="text-left text-white">Ingredients</h2>
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th scope="col">Ingredients</th>
+                        <!--<th scope="col">Định lượng</th>-->
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Dữ liệu sẽ được thêm vào đây bởi back-end -->
+                    <tr><td>{{recipe.ingredients|linebreaks}}</td></tr>
 
-<h2>Some nutritional facts:</h2>
-<table>
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Calories</th>
-            <th scope="col">Serving Size (g)</th>
-            <th scope="col">Total Fat (g)</th>
-            <th scope="col">Saturated Fat (g)</th>
-            <th scope="col">Protein</th>
-            <th scope="col">Sodium</th>
-            <th scope="col">Cholesterol</th>
-            <th scope="col">Potassium</th>
-            <th scope="col">Carbohydrates</th>
-            <th scope="col">Fiber</th>
-            <th scope="col">Sugar</th>
-        </tr>
-    </thead>
-    <tbody id="result">
-        {% for value in res.items %}
-        <tc>
+                </tbody>
+            </table>
+            <h2 class="text-left text-white ">Cooking methods </h2>
+            <!--<input id="cong_thuc" type="text" class="text_recipe text-white" value="{{recipe.cooking_methods|linebreaks}}">-->
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <!--<th scope="col">Phương pháp</th>-->
+                        <!--<th scope="col">Định lượng</th>-->
+                    </tr>
+                </thead>
+                <tbody id="productTableBody">
+                    <!-- Dữ liệu sẽ được thêm vào đây bởi back-end -->
+                    <tr><td>{{recipe.cooking_methods|linebreaks}}</td></tr>
 
-        </tc>
-        <tr>
-            <td>{{value.name}}</td>
-            <td>{{value.calories}}</td>
-            <td>{{value.serving_size_g}}g</td>
-            <td>{{value.fat_total_g}}g</td>
-            <td>{{value.fat_saturated_g}}g</td>
-            <td>{{value.protein_g}}g</td>
-            <td>{{value.sodium_mg}}mg</td>
-            <td>{{value.potassium_mg}}mg</td>
-            <td>{{value.cholesterol_mg}}mg</td>
-            <td>{{value.carbohydrates_total_g}}g</td>
-            <td>{{value.fiber_g}}g</td>
-            <td>{{value.sugar_g}}g</td>
-        </tr>
-        {% endfor %}
-    </tbody>
+                </tbody>
+            </table>
+    </div>
+{% endfor %}
+<br>
+<br>
+<h2 class="mb-4 text-white">Some nutritional facts</h2>
+<table class='table table-bordered' style='color: white;'>
+    <tr><td><strong>Name:</strong></td><td>{{res.items.0.name}}</td></tr>
+    <tr><td><strong>Calories:</strong></td><td>{{res.items.0.calories}}</td></tr>
+    <tr><td><strong>Serving Size(g):</strong></td><td>{{res.items.0.serving_size_g}}</td></tr>
+    <tr><td><strong>Total Fat(g):</strong></td><td>{{res.items.0.fat_total_g}}</td></tr>
+    <tr><td><strong>Protein:</strong></td><td>{{res.items.0.protein_g}}</td></tr>
+    <tr><td><strong>Sodium:</strong></td><td>{{res.items.0.sodium_mg}}</td></tr>
+    <tr><td><strong>Cholesterol:</strong></td><td>{{res.items.0.cholesterol_mg}}</td></tr>
+    <tr><td><strong>Potassium:</strong></td><td>{{res.items.0.potassium_mg}}</td></tr>
+    <tr><td><strong>Carbonhydrates:</strong></td><td>{{res.items.0.carbohydrates_total_g}}</td></tr>
+    <tr><td><strong>Fiber:</strong></td><td>{{res.items.0.fiber_g}}</td></tr>
+    <tr><td><strong>Sugar:</strong></td><td>{{res.items.0.sugar_g}}</td></tr>
 </table>
-
-<h2>Comments:</h2>
-{% if comments %}
-<ul>
-    {% for comment in comments %}
-        <li>{{ comment.name }}: {{ comment.content }} at {{ comment.created_at }}</li>
+<br>
+<br>
+<div class="card comment_card">
+    <br>
+    <div class="container mb-5 text-white" id="comment-section">
+      <h2 class="mb-4">Comments</h2>
+      {% if comments %}
+      {% for comment in comments %}
+      <div class="comment text-white">
+        <strong style="color:white">{{comment.name}}:</strong>
+        <p style="color:white">{{comment.content}}</p>
+    </div>
     {% endfor %}
-</ul>
-{% endif %}
-<form method="post" action="{% url 'comment' %}">
-    <input type="text" name="comment" placeholder="Add your comment here..." style="width: 500px; height: 100px;">
-    <input type="submit" value="Comment" style="width: 100px; height: 50px;">
-</form>
+    {% endif %}
+        <!--<div class="comment">
+            <strong>Người Dùng 2:</strong>
+            <p>Bình luận của người dùng 2.</p>
+        </div>-->
+        <!-- Thêm bình l<div id="comment-section" class="text-white">
+      uận mới ở đây -->
+    </div>
+    <div class="container mt-3">
+        <h2 class="mb-4 text-white">Add your comment</h2>
+        <textarea class="form-control comment-box" id="comment-input" rows="3" name="comment"></textarea>
+        <button id="submit-comment" class="btn btn-secondary" onclick="submitComment()" name="comment">Comment</button>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function submitComment() {
+        // Lấy giá trị từ ô văn bản bình luận
+        console.log(document.getElementById('comment-input').value);
+        var commentText = document.getElementById('comment-input').value;
 
+        // Kiểm tra xem ô văn bản có nội dung hay không
+        if (commentText.trim() === "") {
+            alert("Vui lòng nhập bình luận trước khi gửi.");
+            return;
+        }
+
+        // Tạo một div mới chứa bình luận
+        
+        var newComment = document.createElement('div');
+        newComment.className = 'comment';
+
+        // Tạo phần tên người dùng
+        var username = document.createElement('strong');
+        username.textContent = '{{user}}: ';
+
+        // Tạo phần nội dung bình luận
+        var commentContent = document.createElement('p');
+        commentContent.textContent = commentText;
+
+        //Thêm color cho newComment
+        username.style.color = 'white';
+        commentContent.style.color = 'white';
+
+        // Gắn các phần tử vào div mới
+        newComment.appendChild(username);
+        newComment.appendChild(commentContent);
+
+        console.log(newComment);
+
+        var formData = new FormData();
+        formData.append('name', username.textContent);
+        formData.append('comment', commentContent.textContent);
+
+        fetch('http://127.0.0.1:8000/comment/', {
+        method: 'POST',
+        body: formData,
+        })
+
+        // Gắn div mới vào phần tử có id là 'comment-section'
+        document.getElementById('comment-section').appendChild(newComment);
+
+        // Xóa nội dung của ô văn bản sau khi gửi
+        document.getElementById('comment-input').value = "";
+        
+    }
+</script>
+   <!-- Nút cuộn lên đầu trang -->
+<button onclick="scrollToTop()" id="scrollToTopButton" style="display:none; position:fixed; bottom:20px; right:20px;">Lên Đầu Trang</button>
+<script>
+    // Hàm cuộn lên đầu trang
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    
+    // Hiển thị nút khi cuộn xuống một khoảng nhất định
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("scrollToTopButton").style.display = "block";
+        } else {
+            document.getElementById("scrollToTopButton").style.display = "none";
+        }
+    };
+</script>
+    
+
+</body>
+</html>

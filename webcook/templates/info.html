@@ -63,7 +63,7 @@
     justify-content: center;
 }
 </style>
-<a class="navbar-brand d-flex justify-content-center " href="#">
+<a class="navbar-brand d-flex justify-content-center " href="/">
     <img src="{% static 'image/bg-img/UIT_logo.png' %}" style="max-height: 200px; max-width: 200px;">
 </a>
 
@@ -104,8 +104,8 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white"> ABOUT US
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="./member.html" style="color:black">Member</a></li>
-                            <li><a class="dropdown-item" href="./maps.html" style="color:black">Maps</a></li>
+                            <li><a class="dropdown-item" href="../member" style="color:black">Member</a></li>
+                            <li><a class="dropdown-item" href="../maps.html" style="color:black">Maps</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -127,13 +127,13 @@
                     </li>
                     {% endif %}
                     <!--<input class="form-control text-darks" list="searches" name="search" id="search" placeholder="Enter your search query">-->
-                    <form action="{% url 'results' %}" method="get">
-                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">
+                    <form class="d-flex" action="{% url 'results' %}" method="get">
+                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query" required>
                         <datalist id="searches">
                             <option value="Option1">
                             <option value="Option2">
                         </datalist>
-                        <button class ="btn btn-outline-light"type="submit" formaction="{% url 'results' %}">Search</button>
+                        <button class ="btn btn-outline-light" style="width:80px; height:40px;" type="submit" formaction="{% url 'results' %}">Search</button>
                     </form>
                 </ul>
             </div>
@@ -247,27 +247,36 @@
     var gender = document.getElementById("gender").value;
 
     // Create a FormData object and append form values
-    var formData = new FormData();
-    formData.append('name', "{{user}}");
-    formData.append('age', age);
-    formData.append('height', height);
-    formData.append('weight', weight);
-    formData.append('gender', gender);
+    if(age && height && weight && gender)
+    {
+        var formData = new FormData();
+        formData.append('name', "{{user}}");
+        formData.append('age', age);
+        formData.append('height', height);
+        formData.append('weight', weight);
+        formData.append('gender', gender);
 
     // Make a POST request using the fetch API
-    fetch('./', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
+        fetch('./', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
         // Handle success
-    })
-    .catch(error => {
-        console.error('Error:', error);
+        })
+        .catch(error => {
+            console.error('Error:', error);
         // Handle error
-    });
+        });
+        alert("Your data has been successfully saved");
+        location.reload();
+    }
+    else{
+        alert("Please fill in the form before saving");
+        return;
+    }
 }
     function clearResult() {
         var resultDiv = document.getElementById("result");
@@ -285,26 +294,8 @@
         document.getElementById("gender").value = "";
     }
 
-    /*function loadFromLocalStorage() {
-        var savedData = localStorage.getItem("userData");
-
-        if (savedData) {
-            var userData = JSON.parse(savedData);
-
-            // Đặt giá trị cho các trường nhập liệu từ dữ liệu lưu trữ
-            document.getElementById("name").value = userData.name;
-            document.getElementById("age").value = userData.age;
-            document.getElementById("height").value = userData.height;
-            document.getElementById("weight").value = userData.weight;
-            document.getElementById("gender").value = userData.gender;
-            // Hiển thị lại các trường nhập liệu và ẩn nút sửa thông tin
-            showInputFields();
-            document.getElementById("editInfoBtn").style.display = "none";
-        }
-    }*/
-
     function getQuery() {
-    var formData = new FormData();
+        var formData = new FormData();
     formData.append('name', "{{user}}")
     formData.append('age', '');
     formData.append('height', '');
@@ -317,9 +308,9 @@
     fetch('http://127.0.0.1:8000/info/', {
         method: 'POST',
         body: formData,
-    })
+    });
 
-    if ("{{ info }}") {
+     if ("{{ info }}") {
         {% for i in info %}
             document.getElementById("name").value = "{{user}}";
             document.getElementById("age").value = "{{i.age}}";
@@ -328,7 +319,15 @@
             document.getElementById("weight").value = "{{i.weight}}";
         {% endfor %}
     }
+    else{
+            alert("It's look like you are new to us. You may want to fill in your info then click 'Confirm' to send us your information");
+            return;
+    }
 }
+
+    
+
+
 
     function editInfo() {
         // Hiển thị lại các trường nhập liệu và ẩn nút sửa thông tin

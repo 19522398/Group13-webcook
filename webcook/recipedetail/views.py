@@ -26,7 +26,7 @@ def get_queryset(request):
     res = response.json()
     comm = None
     if(comment.views.comment_list(request)):
-        comm = Comment.objects.filter(Q(dish_name__icontains=query))
+        comm = Comment.objects.filter(Q(dish_name__icontains=query)).order_by('created_at')
     print(res)
     context = {
         "object_list": object_list,

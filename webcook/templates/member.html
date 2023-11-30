@@ -98,13 +98,13 @@
                     </li>
                     {% endif %}
                     <!--<input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">-->
-                    <form action="{% url 'results' %}" method="get">
-                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query">
+                    <form class="d-flex" action="{% url 'results' %}" method="get">
+                        <input class="form-control text-dark" list="searches" name="q" type="text" id="search" placeholder="Enter your search query" required>
                         <datalist id="searches">
                             <option value="Option1">
                             <option value="Option2">
                         </datalist>
-                        <button class ="btn btn-outline-light"type="submit" formaction="{% url 'results' %}">Search</button>
+                        <button class ="btn btn-outline-light" style="width:80px; height:40px;" type="submit" formaction="{% url 'results' %}">Search</button>
                     </form>
                 </ul>
             </div>
@@ -123,20 +123,20 @@
 
         <div class="col-md-6">
             <div class="card bg-dark text-light">
-                <img src="./image/bg-img/20.jpg " class="card-img-top" alt="Member 1">
+                <img src="{% static 'image/bg-img/20.jpg' %} " class="card-img-top" alt="Member 1">
                 <div class="card-body">
                     <h5 class="card-title">Lê Tuấn Lương</h5>
-                    <p class="card-text">Introduction and description of Member 1 goes here.</p>
+                    <p class="card-text">MSSV: 20521588</p>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="card bg-dark text-light">
-                <img src="./image/bg-img/19.jpg " class="card-img-top" alt="Member 2">
+                <img src="{% static 'image/bg-img/19.jpg' %} " class="card-img-top" alt="Member 2">
                 <div class="card-body">
                     <h5 class="card-title">Trần Nguyễn Minh Triết</h5>
-                    <p class="card-text">Introduction and description of Member 2 goes here.</p>
+                    <p class="card-text">MSSV: 19522398</p>
                 </div>
             </div>
         </div>
@@ -150,20 +150,20 @@
 
         <div class="col-md-6">
             <div class="card bg-dark text-light">
-                <img src="./image/bg-img/10.jpg" class="card-img-top" alt="Member 1">
+                <img src="{% static 'image/bg-img/10.jpg' %}" class="card-img-top" alt="Member 1">
                 <div class="card-body ">
                     <h5 class="card-title ">Ngô Trần Thái Sơn</h5>
-                    <p class="card-text">Introduction and description of Member 1 goes here.</p>
+                    <p class="card-text">MSSV: 20521841</p>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="card bg-dark text-light">
-                <img src="./image/bg-img/17.jpg " class="card-img-top" alt="Member 2">
+                <img src="{% static 'image/bg-img/17.jpg' %} " class="card-img-top" alt="Member 2">
                 <div class="card-body">
                     <h5 class="card-title">Phạm Văn Xuân</h5>
-                    <p class="card-text">Introduction and description of Member 2 goes here.</p>
+                    <p class="card-text">MSSV: 20522184</p>
                 </div>
             </div>
         </div>

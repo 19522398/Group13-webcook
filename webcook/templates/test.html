@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI CACULATOR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    
+</head>
+<body>
+  <style>
+    .navbar-custom {
+    margin-bottom: 20px;
+    color: white;
+    background: #181A1B;
+    font-family: sans-serif;
+}
+  </style>
+  <!-- Header -->
+<div class="header">
+</div>
+<style>
+    .header {
+    background-image: url('./image/bg-img/header.jpg');
+    background-size: cover; /* Để hình ảnh nền phủ kín phần header */
+    background-repeat: no-repeat; /* Không lặp lại hình ảnh nền */
+    height: 150px; /* Điều chỉnh chiều cao của header theo mong muốn */
+    text-align: center; /* Căn giữa nội dung trong header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+<a class="navbar-brand d-flex justify-content-center " href="#">
+    <img src="./image/bg-img/UIT_logo.png" style="max-height: 200px; max-width: 200px;">
+</a>
+
+
+<style>
+    /* CSS customizations */
+    .post-image {
+        width: 100%; /* Adjust the width as needed */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 600px; /* Set a max-width if needed */
+        display: block; /* Center the image */
+        margin: 0 auto; /* Center the image */
+    }
+    
+    .post-text {
+        font-size: 1.25rem; /* Larger text size */
+        margin-top: 1rem; /* Add space between image and text */
+        text-align: center; /* Center the text */
+    }
+</style>
+
+
+  
+
+
+        <nav class="navbar navbar-expand-lg  navbar-custom">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+    
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item ">
+                        <a class="nav-link" href="./index.html" style="color:white">HOME</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:white"> ABOUT US
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="./member.html" style="color:black">Member</a></li>
+                            <li><a class="dropdown-item" href="./maps.html" style="color:black">Maps</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./calories.html" style="color:white">CALORIES CALCULATOR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./bmi.html" style="color:white">BMI CALCULATOR</a>
+                    </li>
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="./user.html" style="color:white">ID</a>
+                    </li>
+                    <li class="nav-item" id="login">
+                        <a class="nav-link" href="./Chưa Login/index.html" style="color:white">LOGOUT</a>
+                    </li>
+                    <input class="form-control text-darks" list="searches" name="search" id="search" placeholder="Enter your search query">
+                    <form action="/search" method="get">
+                        <datalist id="searches">
+                            <option value="Option1">
+                            <option value="Option2">
+                        </datalist>
+                        <button class ="btn btn-outline-light"type="submit" formaction="./Search.html">Search</button>
+                    </form>
+                </ul>
+            </div>
+        </nav>
+ <!-- Các đoạn mã HTML và JavaScript của trang BMI -->
+ <div class="container mt-5">
+    <h2 class="text-center text-white">BMI CACULATOR</h2> <!-- Dòng chữ BMI ở giữa trang -->
+</div>
+ <div class="container d-flex" id="anh">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card overlay">
+                    <img class="card-img-top" src="./image/bg-img/1.jpg" alt="Card image">
+                    <div class="overlay-content">
+                        <h2>Healthy Food</h2>
+                        <p>Salad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card overlay">
+                    <img class="card-img-top" src="./image/bg-img/2.jpg" alt="Card image">
+                    <div class="overlay-content">
+                        <h2>Healthy Food</h2>
+                        <p>Taco.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card overlay">
+                    <img class="card-img-top" src="./image/bg-img/3.jpg" alt="Card image">
+                    <div class="overlay-content">
+                        <h2>Healthy Food</h2>
+                        <p>Hambuger.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="container mt-5">
+    <form id="userInfoForm">
+        <div class="mb-3">
+            <label for="name" class="form-label text-white">Tên:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="age" class="form-label text-white">Tuổi:</label>
+            <input type="number" class="form-control" id="age" name="age" required>
+        </div>
+        <div class="mb-3">
+            <label for="gender" class="form-label text-white">Giới tính:</label>
+            <select class="form-select" id="gender" name="gender" required>
+                <option value="Other"></option>
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="height" class="form-label text-white">Chiều cao (cm):</label>
+            <input type="number" class="form-control" id="height" name="height" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="weight" class="form-label text-white">Cân nặng (kg):</label>
+            <input type="number" class="form-control" id="weight" name="weight" required>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-outline-light " onclick="calculateBMI()">Tính BMI</button>
+            <button type="button" class="btn btn-outline-light" onclick="clearResult()">Xoá</button>
+            <button type="button" class="btn btn-outline-light" onclick="loadFromLocalStorage()">Lấy thông tin của user</button>
+        </div>
+        
+
+        
+    </form>
+
+    <div id="result" class="mt-4"></div>
+</div>
+<style>
+    #result {
+        color: white;
+    }
+</style>
+<!--BMI-->
+<script>
+    window.onload = function () {
+        loadFromLocalStorage();
+    };
+
+    // Hàm trích xuất thông tin từ Local Storage
+    function loadFromLocalStorage() {
+        var savedData = localStorage.getItem("userData");
+
+        if (savedData) {
+            var userData = JSON.parse(savedData);
+
+            // Đặt giá trị cho các trường nhập liệu từ dữ liệu lưu trữ
+            document.getElementById("name").value = userData.name;
+            document.getElementById("age").value = userData.age;
+            document.getElementById("height").value = userData.height;
+            document.getElementById("weight").value = userData.weight;
+            document.getElementById("gender").value = userData.gender;
+        }
+    }
+    function calculateBMI() {
+        var name = document.getElementById("name").value;
+        var age = document.getElementById("age").value;
+        var height = document.getElementById("height").value;
+        var weight = document.getElementById("weight").value;
+        var gender = document.getElementById("gender").value;
+
+        // Thực hiện tính toán BMI ở đây, ví dụ:
+        var bmi = weight / ((height / 100) * (height / 100));
+
+        // Hiển thị kết quả trong bảng
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "<h2>Kết quả:</h2>" +
+            "<table class='table table-bordered'>" +
+            "<tr><td><strong>Tên:</strong></td><td>" + name + "</td></tr>" +
+            "<tr><td><strong>Tuổi:</strong></td><td>" + age + "</td></tr>" +
+            "<tr><td><strong>Chiều cao:</strong></td><td>" + height + " cm</td></tr>" +
+            "<tr><td><strong>Cân nặng:</strong></td><td>" + weight + " kg</td></tr>" +
+            "<tr><td><strong>Giới tính:</strong></td><td>" + gender + "</td></tr>" +
+            "<tr><td><strong>BMI:</strong></td><td>" + bmi.toFixed(2) + "</td></tr>" +
+            "</table>";
+    }
+    function clearResult() {
+        var resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = ""; // Xoá nội dung kết quả
+        clearForm();
+    }
+    function clearForm() {
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+        document.getElementById("height").value = "";
+        document.getElementById("weight").value = "";
+        document.getElementById("gender").value = "";
+    }
+
+</script>
+<div class="container mt-5 comment" >
+    <div class="card">
+      <div class="card-body comment-box">
+        <h5 class="card-title ">Bình luận</h5>
+        <form>
+          <div class="form-group">
+            <label for="comment">Nội dung:</label>
+            <textarea class="form-control" id="comment" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-dark ">Gửi comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+   <!-- Nút cuộn lên đầu trang -->
+<button onclick="scrollToTop()" id="scrollToTopButton" style="display:none; position:fixed; bottom:20px; right:20px;">Lên Đầu Trang</button>
+<script>
+    // Hàm cuộn lên đầu trang
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    
+    // Hiển thị nút khi cuộn xuống một khoảng nhất định
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("scrollToTopButton").style.display = "block";
+        } else {
+            document.getElementById("scrollToTopButton").style.display = "none";
+        }
+    };
+</script>
+    
+
+</body>
+</html>
