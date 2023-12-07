@@ -41,13 +41,15 @@ class SearchResult(ListView):
             for i in t:
                 if(i[0].count(" ")): 
                     i = "".join(i.split())
-                search.append(i)
+                    search.append(i)
+                else:
+                    i = i.split()
+                    search = i
 
             if(len(search) == 1):
                 object_list = Recipe.objects.filter(Q(dish_name__icontains=search[0]) | Q(ingredients__icontains=search[0]))
                 
             else:
-                object_list = Recipe.objects.filter(ingredients__in=search)
                 query = Q()
                 for ingredient in search:
                     query &= Q(ingredients__icontains=ingredient)

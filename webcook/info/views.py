@@ -14,7 +14,7 @@ def get_info(request):
     res = None
     user = None
     template = loader.get_template('info.html')
-    #print(request.POST)
+    
 
     if(request.user.is_authenticated):
         user = request.user
@@ -29,17 +29,13 @@ def get_info(request):
                 height=request.POST['height'],
                 gender=request.POST['gender']
             )
-            print("Update Ok")
+            
         else:
             # Create a new user entry
             s = WebcookUser(name=user, age=request.POST['age'], weight=request.POST['weight'], height=request.POST['height'], gender=request.POST['gender'])
             s.save()
         res = WebcookUser.objects.filter(name=user)
     
-    # elif(request.method == "POST" and request.POST['name']): #Get one self's info
-    #     res = WebcookUser.objects.filter(name=user)
-    
-    print(res)
     context = {
         "user": user,
         "info": res,
