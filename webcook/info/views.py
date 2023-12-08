@@ -18,12 +18,12 @@ def get_info(request):
 
     if(request.user.is_authenticated):
         user = request.user
-        res = WebcookUser.objects.filter(name=user)
+        res = WebcookUser.objects.filter(username=user)
     
     if(request.method == "POST" and request.POST['gender'] and request.POST['age'] and request.POST['weight'] and request.POST['height']):
-        if WebcookUser.objects.filter(name=user).count() == 1:
+        if WebcookUser.objects.filter(username=user).count() == 1:
             # Update the existing user information
-            WebcookUser.objects.filter(name=user).update(
+            WebcookUser.objects.filter(username=user).update(
                 age=request.POST['age'],
                 weight=request.POST['weight'],
                 height=request.POST['height'],
@@ -32,10 +32,10 @@ def get_info(request):
             
         else:
             # Create a new user entry
-            s = WebcookUser(name=user, age=request.POST['age'], weight=request.POST['weight'], height=request.POST['height'], gender=request.POST['gender'])
+            s = WebcookUser(username=user, age=request.POST['age'], weight=request.POST['weight'], height=request.POST['height'], gender=request.POST['gender'])
             s.save()
-        res = WebcookUser.objects.filter(name=user)
-    
+        res = WebcookUser.objects.filter(username=user)
+    print(res)
     context = {
         "user": user,
         "info": res,

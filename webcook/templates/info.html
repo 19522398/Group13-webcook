@@ -203,42 +203,7 @@
     document.getElementById('gender').value = userData.gender || '';
     document.getElementById('height').value = userData.height || '';
     document.getElementById('weight').value = userData.weight || '';
-    /*function Submit() {
-        var name = document.getElementById("name").value;
-        var age = document.getElementById("age").value;
-        var height = document.getElementById("height").value;
-        var weight = document.getElementById("weight").value;
-        var gender = document.getElementById("gender").value;
-
-
-        // Hiển thị kết quả trong bảng
-        var resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = "<h2> Xác nhận lại thông tin người dùng:</h2>" +
-            "<table class='table table-bordered'>" +
-            "<tr><td><strong>Tên:</strong></td><td>" + name + "</td></tr>" +
-            "<tr><td><strong>Tuổi:</strong></td><td>" + age + "</td></tr>" +
-            "<tr><td><strong>Giới tính:</strong></td><td>" + gender + "</td></tr>" +
-            "<tr><td><strong>Chiều cao:</strong></td><td>" + height + " cm</td></tr>" +
-            "<tr><td><strong>Cân nặng:</strong></td><td>" + weight + " kg</td></tr>" +
-            
-            "</table>";
-
-        //lưu thông tin
-        var userData = {
-            name: document.getElementById("name").value,
-            age: document.getElementById("age").value,
-            height: document.getElementById("height").value,
-            weight: document.getElementById("weight").value,
-            gender: document.getElementById("gender").value
-        };
-
-        // Lưu dữ liệu vào Local Storage
-        localStorage.setItem("userData", JSON.stringify(userData));
-        // ẩn 
-        hideInputFields();
-        document.getElementById("editInfoBtn").style.display = "block";
-
-    }*/
+    
     function Submit() {
     //var name = document.getElementById("name").value;
     var age = document.getElementById("age").value;
@@ -310,18 +275,20 @@
         body: formData,
     });
 
-     if ("{{ info }}") {
-        {% for i in info %}
+     if ("{{ info }}" == "&lt;QuerySet []&gt;") {
+        alert("It's look like you are new to us. You may want to fill in your info then click 'Confirm' to send us your information");
+        return;
+        
+    }
+    else{
+           
+            {% for i in info %}
             document.getElementById("name").value = "{{user}}";
             document.getElementById("age").value = "{{i.age}}";
             document.getElementById("gender").value =  "{{i.gender}}";
             document.getElementById("height").value = "{{i.height}}";
             document.getElementById("weight").value = "{{i.weight}}";
         {% endfor %}
-    }
-    else{
-            alert("It's look like you are new to us. You may want to fill in your info then click 'Confirm' to send us your information");
-            return;
     }
 }
 
