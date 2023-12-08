@@ -11,7 +11,6 @@ def BMI(request):
 
     bmi = None
     message = None
-    print(request.user)
     if(request.method == "POST" and request.POST['height'] and request.POST['weight'] and request.POST['age'] and request.user):
         height = float(request.POST['height'])
         weight = float(request.POST['weight'])
